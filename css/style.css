@@ -1,0 +1,29 @@
+.header {
+    background-color: rosybrown;
+}
+
+.scores {
+    background-color: olivedrab;
+}
+
+.center {
+    background-color: violet;
+
+}
+
+.timer {
+    background-color:turquoise;
+    text-align: right;
+    
+}
+
+.main {
+    background-color: teal;
+    height: 500px;
+}
+
+.question {
+    background-color: tomato;
+    height: 400px;
+
+}
