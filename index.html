@@ -12,29 +12,92 @@
     <title>Hello, world!</title>
   </head>
   <body>
-      <div class="container-fluid">
-          <div class="header row px-2 py-3">
-            <div class="scores col align-middle py-5">View highscores</div>
-            <div class="center col-6"></div>
-            <div class="timer col align-middle text-right py-5">
-                <h2>Timer: <span id="timer">90</span></h2>
-            </div>
-          </div>
-          <div class="main row">
-              <div class="question col-8 mx-auto ">Question
-
-                <button id ="start">start</button>  
-              </div>
-          </div>
+    <div class="container-fluid"> <!-- whole body container -->
+      <div class="header row px-2 py-3"> <!-- header -->
+        <div class="scores col align-middle py-1">View highscores</div>
+        <div class="center col-6"></div>
+        <div class="timer col align-middle text-right ">
+          <h2 id="timer">Timer: <span  id="countdown">90</span></h2>
+        </div>
       </div>
-    <!--Timer
-        https://www.w3schools.com/howto/howto_js_countdown.asp
-        for loop countdown
-
-    Start button
-        event listener > start timer & switch to question screen
-        toggle?
-
+  <!-- main body; home of the cards-->      
+      <main class="main row"> 
+        <div class="col-6 mx-auto">
+  <!-- keeping track of where cards start -->      
+      <!-- card for start screen -->  
+          <div class="card text-center mainCard show" id="home"> 
+          <div class="card-body">
+            <h2 class="card-title " style="color: purple; font-weight: bold;">Coding Quiz Challenge</h2>
+            <p class="card-text mx-5 my-3">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
+            <button class="btn btn-primary my-3" id="start">Start Quiz</button>
+          </div>
+          </div>
+      <!-- Card for quiz -->  <!-- from bootstrap documentation; for questions/ being modified, buttons added-->
+          <div class="card text-center mainCard hide" id="quiz">      
+          <div class="card-body">
+            <h5 class="card-title question">Question</h5>
+            <div class="answers col-8 mx-auto">
+              <button type="button" class="btn btn-info btn-lg btn-block text-left" id="A">Block level button</button>
+              <button type="button" class="btn btn-info btn-lg btn-block text-left" id="B">Block level button</button>
+              <button type="button" class="btn btn-info btn-lg btn-block text-left" id="C">Block level button</button>
+              <button type="button" class="btn btn-info btn-lg btn-block text-left" id="D">Block level button</button>
+            </div>        
+          </div>
+          <div class="card-footer text-muted">
+            <p class="hide">correct or incorrect</p>
+          </div>  
+          </div>
+      <!-- Card for inputting initials --> <!-- hide until quiz complete-->     
+          <div class="card text-center mainCard hide" id="inputInitials"> 
+                <div class="card text-center">
+                  <div class="card-body">
+                    <h5 class="card-title">Question</h5>
+                    <button type="button" class="btn btn-info btn-lg btn-block text-left">Block level button</button>
+                  </div>
+                </div>  
+          </div>
+      <!-- Card for high scores -->
+          <div class="card text-center mainCard hide" id="scores">
+          <div class="card-body">
+                <h5 class="card-title">High Scores</h5>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Initials</th>
+                      <th scope="col">Score</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <button type="button" class="btn btn-info btn-sm">Reset quiz</button>
+                <button type="button" class="btn btn-info btn-sm">Clear scores</button>          
+        </div>
+          </div>
+  <!-- End of cards -->
+          </div>
+      </main>
+        </div>
+    <!--
     questions
         https://getbootstrap.com/docs/4.4/components/card/
         https://getbootstrap.com/docs/4.4/components/button-group/
