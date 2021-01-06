@@ -5,15 +5,16 @@ var a = document.querySelector("#A");
 var b = document.querySelector("#B");
 var c = document.querySelector("#C");
 var d = document.querySelector("#D");
-// Do I need to change btns to submit? https://www.w3schools.com/html/html_forms.asp
+var finalScore = document.getElementById("finalScore");
+var enterScore = document.querySelector("#enterScore");
+
 var timer = document.querySelector("#timer");
 var countdown = document.querySelector("#countdown");
-var timeLeft = 90, reset; // what is the reset part?
-var Score;
-var response = document.querySelector("#response");
-var pick;
-var check;
+var timeLeft = 90, reset; 
+var feedback = document.querySelector("#response");
 var currentQ = 0;
+var initials;
+var score;
 
 // Variables - cards
 var startScreen = document.querySelector("#home");
@@ -27,11 +28,13 @@ var questions = [
     ["Commonly used data types DO NOT include:","strings","incorrect","booleans","incorrect","alerts","correct","numbers","incorrect"],
     ["What is the answer to life, the universe, and everything?","pizza","incorrect","42","correct","love","incorrect","money","incorrect"],
     ["The condition in an if/else statement is enclosed within ______.","quotes","incorrect","curly brackets","incorrect","parentheses","correct","square brackets","incorrect"],
-    ["Arrays in JavaScript can be used to store _______","numbers and strings","incorrect","other arrays","incorrect","booleans","incorrect","all of the above","incorrect"],
-    ["String values must be enclosed within _____ when being assigned to variables.","commas","incorrect","curly brackets","incorrect","quotes","incorrect","parentheses","incorrect"]
+    ["Arrays in JavaScript can be used to store _______","numbers and strings","incorrect","other arrays","incorrect","booleans","incorrect","all of the above","correct"],
+    ["String values must be enclosed within _____ when being assigned to variables.","commas","incorrect","curly brackets","incorrect","quotes","correct","parentheses","incorrect"]
 ];
+var length = questions.length;
 
-// functions: for loop net ninja > Daily Tuition (youtube, setInterval)
+
+// functions: for loop Daily Tuition (youtube, setInterval)
 
 function countDown() {
     reset = setInterval(function() {
@@ -42,68 +45,90 @@ function countDown() {
             timer.innerHTML = "Time's up!";
             clearInterval(reset);
             score = 0;
-            return score;
+            finish(score);
         }    
     }, 1000)
 }
 
-function quizQuestions() {
-    if (check == true) {
-            q.innerHTML = questions[currentQ][0];
-            a.innerHTML = questions[currentQ][1];
-            b.innerHTML = questions[currentQ][3];
-            c.innerHTML = questions[currentQ][5];
-            d.innerHTML = questions[currentQ][7];  
-            a.addEventListener("click", function() {
-                checkAnswer(1); 
-            })    
-            b.addEventListener("click", function() {
-                checkAnswer(3); 
-            })    
-            c.addEventListener("click", function() {
-                checkAnswer(5); 
-            })    
-            d.addEventListener("click", function() {
-                checkAnswer(7); 
-            })    
-        };
-}
-
-function checkAnswer(num) {
-    if (questions[currentQ][num + 1] === "correct") {
-        console.log("Correct")
-    } else {
-        console.log("Incorrect");
-        timeLeft = timeLeft - 10;
-    }
-    currentQ++;
-    quizQuestions();
-    // need to display, subtract time, go to next (reset button to manually reset to Q1?)
-}
-
-
     // show/hide functions:  https://www.youtube.com/watch?v=EaRrmOtPYTM&list=PLyuRouwmQCjmQTKvgqIgah03HF1wrYkA9&index=17
 function startQuiz() {
-    check = startScreen.classList.contains("show");
-    if (check == true) {
+    if (true) {
         startScreen.classList.remove("show");
         startScreen.classList.add("hide");
         quizScreen.classList.remove("hide");
         quizScreen.classList.add("show");
     };
+    timeLeft = 90;
+    currentQ = 0;
+    quizQuestions();
     };
 
+function quizQuestions() {
+    if (true) {
+        q.innerHTML = questions[currentQ][0];
+        a.innerHTML = questions[currentQ][1];
+        b.innerHTML = questions[currentQ][3];
+        c.innerHTML = questions[currentQ][5];
+        d.innerHTML = questions[currentQ][7];  
+    };
+}
 
-        
+function checkAnswer(num) {
+    if (questions[currentQ][num + 1] === "correct") {
+        feedback.innerHTML = "Correct";
+        next();
+    } else {
+        feedback.innerHTML = "Incorrect";
+        timeLeft = timeLeft - 10;
+        next();
+    };
+};
 
+function next() {
+    currentQ++;
+    if (currentQ < length) {
+        quizQuestions();
+    } else {
+        score = timeLeft;
+        clearInterval(reset);
+        finish(score);
+    };
+}
 
-// all the toggle functions
-//function start(event) {
-//    startScreen.reset.
-//}
+function finish(n) {
+    if (n >= 0) {
+        console.log(n);
+        quizScreen.classList.remove("show");
+        quizScreen.classList.add("hide");
+        initialsScreen.classList.remove("hide");
+        initialsScreen.classList.add("show");
+        finalScore.innerHTML = n;
+    };
+};
+
+// answer return functions for event listeners
+function returnA() {
+    checkAnswer(1);
+};
+
+function returnB() {
+    checkAnswer(3);
+};
+
+function returnC() {
+    checkAnswer(5);
+};
+
+function returnD() {
+    checkAnswer(7);
+};
+
 
 // Event listeners
 // YouTube Steve Griffith for event listeners detailed
 startBtn.addEventListener("click", countDown); // click start starts timer
 startBtn.addEventListener("click", startQuiz); // click to hide start screen
-startBtn.addEventListener("click", quizQuestions); // click to show first question
+a.addEventListener("click", returnA);
+b.addEventListener("click", returnB);
+c.addEventListener("click", returnC);
+d.addEventListener("click", returnD);
