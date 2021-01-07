@@ -18,10 +18,10 @@ var yourScore;
 
 var enterScore = document.querySelector("#enterScore"); // submit initials
 var startOver = document.querySelector("#resetBtn"); // reset quiz
-var clear = document.querySelector("#clearBtn"); // clear highscores
+var clear = document.querySelector(".clearBtn"); // clear highscores
 var player = document.querySelector("#initials"); // initials that were input
 var place = 0; // index 0 = first place: arbitrary first second third etc after sorting scores
-
+var viewScores = document.querySelector("#link");
 var highScores = {
 
 };
@@ -99,19 +99,19 @@ function display(spot) {
 
 function resetQuiz() {
     if(true) {
-        startScreen.classList.add("show");
-        quizScreen.classList.add("hide");
-        initialsScreen.classList.add("hide");
-        scoreScreen.classList.add("hide");
-        quizScreen.classList.remove("show");
-        initialsScreen.classList.remove("show");
-        scoreScreen.classList.remove("show");
-        timeLeft = 90;
-    }
+        location.reload();
+    };
 }
 
 function clearScores() {
+    if(true) {
+        localStorage.clear();
+        location.reload();
+    };
+}
 
+function viewHighScores() {
+    if(true) 
 }
 
 // Arrays
@@ -225,4 +225,5 @@ c.addEventListener("click", returnC);
 d.addEventListener("click", returnD);
 enterScore.addEventListener("click", claimScore);
 startOver.addEventListener("click", resetQuiz);
-// clear.addEventListener("click", clearScores);
+clear.addEventListener("click", clearScores);
+viewScores.addEventListener("click", viewHighScores);
