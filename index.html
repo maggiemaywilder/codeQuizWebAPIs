@@ -64,10 +64,10 @@
                 </div>  
           </div>
       <!-- Card for high scores -->
-          <div class="card text-center mainCard show" id="scores">
+          <div class="card text-center mainCard hide" id="scores">
           <div class="card-body">
                 <h5 class="card-title">High Scores</h5>
-                <table class="table table-striped">
+                <table class="table table-striped" >
                   <thead>
                     <tr>
                       <th scope="col">#</th>
@@ -75,10 +75,9 @@
                       <th scope="col">Score</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="scoreTable">
                     <tr>
                       <th scope="row">1</th>
-                      <td></td>
                       <td></td>
                       <td></td>
                     </tr>
@@ -86,11 +85,9 @@
                       <th scope="row">2</th>
                       <td></td>
                       <td></td>
-                      <td></td>
                     </tr>
                     <tr>
                       <th scope="row">3</th>
-                      <td></td>
                       <td></td>
                       <td></td>
                     </tr>
@@ -98,17 +95,15 @@
                       <th scope="row">4</th>
                       <td></td>
                       <td></td>
-                      <td></td>
                     </tr>
                     <tr>
                       <th scope="row">5</th>
                       <td></td>
                       <td></td>
-                      <td></td>
                     </tr>
                   </tbody>
                 </table>
-                <button type="button" class="btn btn-info btn-sm resetBtn">Reset quiz</button>
+                <button type="button" class="btn btn-info btn-sm" id="resetBtn">Reset quiz</button>
                 <button type="button" class="btn btn-info btn-sm clearBtn">Clear scores</button>          
         </div>
           </div>

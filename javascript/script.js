@@ -6,6 +6,7 @@ var b = document.querySelector("#B");
 var c = document.querySelector("#C");
 var d = document.querySelector("#D");
 var finalScore = document.getElementById("finalScore");
+var table = document.getElementById("scoreTable");
 
 var timer = document.querySelector("#timer");
 var countdown = document.querySelector("#countdown");
@@ -16,10 +17,10 @@ var score;
 var yourScore;
 
 var enterScore = document.querySelector("#enterScore"); // submit initials
-var reset = document.querySelector("#resetBtn"); // reset quiz
+var startOver = document.querySelector("#resetBtn"); // reset quiz
 var clear = document.querySelector("#clearBtn"); // clear highscores
 var player = document.querySelector("#initials"); // initials that were input
-var place; // arbitrary first second third etc after sorting scores
+var place = 0; // index 0 = first place: arbitrary first second third etc after sorting scores
 
 var highScores = {
 
@@ -40,7 +41,6 @@ function claimScore() {
         var final = yourScore;
         var person = player.value.trim().toUpperCase();
         highScore = (final + "_" + person);
-        console.log(highScore);
         var storage = localStorage.getItem(key);
         var highScores = [];
         if(storage) {
@@ -48,24 +48,55 @@ function claimScore() {
         }
         highScores.push(highScore);
         highScores.sort();
-        if (highScores.length > 10) {
+        if (highScores.length > 5) {
             highScores.shift();
         };
         highScores.reverse();
         localStorage.setItem(key, JSON.stringify(highScores));
     }; 
-    showScores(highScores);
+    initialsScreen.classList.remove("show");
+    initialsScreen.classList.add("hide");
+    scoreScreen.classList.remove("hide");
+    scoreScreen.classList.add("show");
+    showScores();
 }
 
-function showScores(store) {
-    let num = store.length;
-    if (num) {
-        for(var i = 0; i < num; i++) {
-            // need to split each with .split("_") and display on chart. 
-        }
+function showScores() {
+    var key = "Maggie-Quiz-Scores-"
+    var storage = localStorage.getItem(key);
+    if(storage) {
+        highScores = JSON.parse(storage);
     }
-
+    var num = highScores.length;
+    if (true) {
+        for(var i = 0; i < num; i++) {
+            var each = highScores[i].split("_");
+            // table.children[place].children[2].innerHTML = each[1];
+            // table.children[place].children[1].innerHTML = each[0];
+            console.log(highScores[i]);
+            nextPlace(each);
+    }
 }
+}
+
+function nextPlace(spot) {
+    place;
+    if (place < highScores.length) {
+        table.children[place].children[2].innerHTML = spot[1];
+        table.children[place].children[1].innerHTML = spot[0];
+        place++;
+} else {
+        place = 0;
+        return;
+    }
+}; 
+function display(spot) {
+    if (true) {
+            table.children[0].children[2].innerHTML = spot[1];
+            table.children[0].children[1].innerHTML = spot[0];
+    };
+}
+
 function resetQuiz() {
     if(true) {
         startScreen.classList.add("show");
@@ -193,5 +224,5 @@ b.addEventListener("click", returnB);
 c.addEventListener("click", returnC);
 d.addEventListener("click", returnD);
 enterScore.addEventListener("click", claimScore);
-reset.addEventListener("click", resetQuiz);
+startOver.addEventListener("click", resetQuiz);
 // clear.addEventListener("click", clearScores);
