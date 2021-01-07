@@ -6,21 +6,82 @@ var b = document.querySelector("#B");
 var c = document.querySelector("#C");
 var d = document.querySelector("#D");
 var finalScore = document.getElementById("finalScore");
-var enterScore = document.querySelector("#enterScore");
 
 var timer = document.querySelector("#timer");
 var countdown = document.querySelector("#countdown");
 var timeLeft = 90, reset; 
 var feedback = document.querySelector("#response");
 var currentQ = 0;
-var initials;
 var score;
+var yourScore;
+
+var enterScore = document.querySelector("#enterScore"); // submit initials
+var reset = document.querySelector("#resetBtn"); // reset quiz
+var clear = document.querySelector("#clearBtn"); // clear highscores
+var player = document.querySelector("#initials"); // initials that were input
+var place; // arbitrary first second third etc after sorting scores
+
+var highScores = {
+
+};
 
 // Variables - cards
 var startScreen = document.querySelector("#home");
 var quizScreen = document.querySelector("#quiz");
 var initialsScreen = document.querySelector("#inputInitials")
 var scoreScreen = document.querySelector("#scores");
+
+// https://www.youtube.com/watch?v=k8yJCeuP6I8&t=608s
+
+
+function claimScore() {
+    if(true) {
+        var key = "Maggie-Quiz-Scores-"
+        var final = yourScore;
+        var person = player.value.trim().toUpperCase();
+        highScore = (final + "_" + person);
+        console.log(highScore);
+        var storage = localStorage.getItem(key);
+        var highScores = [];
+        if(storage) {
+            highScores = JSON.parse(storage);
+        }
+        highScores.push(highScore);
+        highScores.sort();
+        if (highScores.length > 10) {
+            highScores.shift();
+        };
+        highScores.reverse();
+        localStorage.setItem(key, JSON.stringify(highScores));
+    }; 
+    showScores(highScores);
+}
+
+function showScores(store) {
+    let num = store.length;
+    if (num) {
+        for(var i = 0; i < num; i++) {
+            // need to split each with .split("_") and display on chart. 
+        }
+    }
+
+}
+function resetQuiz() {
+    if(true) {
+        startScreen.classList.add("show");
+        quizScreen.classList.add("hide");
+        initialsScreen.classList.add("hide");
+        scoreScreen.classList.add("hide");
+        quizScreen.classList.remove("show");
+        initialsScreen.classList.remove("show");
+        scoreScreen.classList.remove("show");
+        timeLeft = 90;
+    }
+}
+
+function clearScores() {
+
+}
 
 // Arrays
 var questions = [
@@ -33,9 +94,7 @@ var questions = [
 ];
 var length = questions.length;
 
-
 // functions: for loop Daily Tuition (youtube, setInterval)
-
 function countDown() {
     reset = setInterval(function() {
         if( timeLeft > 0) {
@@ -97,12 +156,13 @@ function next() {
 
 function finish(n) {
     if (n >= 0) {
-        console.log(n);
         quizScreen.classList.remove("show");
         quizScreen.classList.add("hide");
         initialsScreen.classList.remove("hide");
         initialsScreen.classList.add("show");
         finalScore.innerHTML = n;
+        yourScore = n;
+        return yourScore;
     };
 };
 
@@ -132,3 +192,6 @@ a.addEventListener("click", returnA);
 b.addEventListener("click", returnB);
 c.addEventListener("click", returnC);
 d.addEventListener("click", returnD);
+enterScore.addEventListener("click", claimScore);
+reset.addEventListener("click", resetQuiz);
+// clear.addEventListener("click", clearScores);

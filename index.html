@@ -57,14 +57,14 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text">Input your initials.</span>
                       </div>
-                      <input type="text" aria-label="initials" class="form-control initials">
+                      <input type="text" aria-label="initials" class="form-control" id="initials">
                     </div>                    
-                    <button type="button" class="btn btn-info btn-lg btn-block text-left enterScore">Submit score</button>
+                    <button type="button" class="btn btn-info btn-lg btn-block text-left" id="enterScore">Submit score</button>
                   </div>
                 </div>  
           </div>
       <!-- Card for high scores -->
-          <div class="card text-center mainCard hide" id="scores">
+          <div class="card text-center mainCard show" id="scores">
           <div class="card-body">
                 <h5 class="card-title">High Scores</h5>
                 <table class="table table-striped">
@@ -94,10 +94,22 @@
                       <td></td>
                       <td></td>
                     </tr>
+                    <tr>
+                      <th scope="row">4</th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">5</th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
                   </tbody>
                 </table>
-                <button type="button" class="btn btn-info btn-sm">Reset quiz</button>
-                <button type="button" class="btn btn-info btn-sm">Clear scores</button>          
+                <button type="button" class="btn btn-info btn-sm resetBtn">Reset quiz</button>
+                <button type="button" class="btn btn-info btn-sm clearBtn">Clear scores</button>          
         </div>
           </div>
   <!-- End of cards -->
