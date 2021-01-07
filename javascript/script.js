@@ -22,6 +22,7 @@ var clear = document.querySelector(".clearBtn"); // clear highscores
 var player = document.querySelector("#initials"); // initials that were input
 var place = 0; // index 0 = first place: arbitrary first second third etc after sorting scores
 var viewScores = document.querySelector("#link");
+var allScreens = document.body.children[0].children[1].children[0].querySelector(".card");
 var highScores = {
 
 };
@@ -111,7 +112,13 @@ function clearScores() {
 }
 
 function viewHighScores() {
-    if(true) 
+    if(true) {
+        allScreens.classList.remove("show");
+        allScreens.classList.add("hide");
+        scoreScreen.classList.remove("hide");
+        scoreScreen.classList.add("show");
+    }
+
 }
 
 // Arrays
