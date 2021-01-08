@@ -72,8 +72,6 @@ function showScores() {
     if (true) {
         for(var i = 0; i < num; i++) {
             var each = highScores[i].split("_");
-            // table.children[place].children[2].innerHTML = each[1];
-            // table.children[place].children[1].innerHTML = each[0];
             console.log(highScores[i]);
             nextPlace(each);
     }
@@ -117,8 +115,8 @@ function viewHighScores() {
         allScreens.classList.add("hide");
         scoreScreen.classList.remove("hide");
         scoreScreen.classList.add("show");
-    }
-
+    };
+    showScores();
 }
 
 // Arrays
@@ -132,7 +130,6 @@ var questions = [
 ];
 var length = questions.length;
 
-// functions: for loop Daily Tuition (youtube, setInterval)
 function countDown() {
     reset = setInterval(function() {
         if( timeLeft > 0) {
